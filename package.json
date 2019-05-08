@@ -3,8 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "d3": "^5.9.2",
     "react": "^16.8.6",
+    "react-d3-graph": "^2.0.2",
     "react-dom": "^16.8.6",
+    "react-numeric-input": "^2.2.3",
     "react-scripts": "3.0.1"
   },
   "scripts": {

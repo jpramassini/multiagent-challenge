@@ -50,7 +50,7 @@ class App extends React.Component {
     let links = [];
 
     // Dict for each node, showing all nodes it's connected to.
-    let nodeConnections = {};
+    let nodeConnections = [];
 
     // Generate nodes from 0 to n-1, push onto array.
     for (let i = 0; i < n; i++) {
@@ -60,21 +60,23 @@ class App extends React.Component {
 
     // Generate connections...
     for (let i = 0; i < k; i++) {
-      let source = randomIntInRange(0, n - 1);
+      let source;
+      do {
+        source = randomIntInRange(0, n - 1);
+      } while (nodeConnections[source].length === n - 1);
       console.log("Source: " + source);
       let target;
       do {
         target = randomIntInRange(0, n - 1);
-        console.log("Target: " + target);
       } while (
         target === source ||
-        Object.values(nodeConnections[source]).indexOf(target) > -1 ||
-        Object.values(nodeConnections[target]).indexOf(source) > -1 ||
-        nodeConnections[source].length !== n - 1 ||
-        nodeConnections[target].length !== n - 1
+        nodeConnections[target].length === n - 1 ||
+        nodeConnections[source].indexOf(target) > -1
       ); // To ensure no self-connections or double connections
 
+      console.log("Target: " + target);
       nodeConnections[source].push(target);
+      nodeConnections[target].push(source);
       links.push({ source: source, target: target });
     }
     console.log(links);

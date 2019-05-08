@@ -4,6 +4,10 @@
   "private": true,
   "dependencies": {
     "d3": "^5.9.2",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.2.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "prettier": "^1.17.0",
     "react": "^16.8.6",
     "react-d3-graph": "^2.0.2",
     "react-dom": "^16.8.6",

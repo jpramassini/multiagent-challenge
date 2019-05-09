@@ -143,7 +143,7 @@ class App extends React.Component {
       target = randomIntInRange(0, this.state.n - 1);
       checked[target] = true;
     } while (
-      target === parseInt(source) ||
+      target == parseInt(source) ||
       this.state.nodeConnections[target].length === this.state.n - 1 ||
       this.state.nodeConnections[source].indexOf(target) > -1 ||
       this.checkForCycle(source, target)
@@ -153,7 +153,7 @@ class App extends React.Component {
     nodeConnections[source].push(target);
     nodeConnections[target].push(source);
     data.links.push({ source: parseInt(source), target: target });
-    this.setState({ data, nodeConnections });
+    this.setState({ data, nodeConnections, k: this.state.k + 1 });
   };
 
   // Calculate and update size of svg dimensions
@@ -171,7 +171,7 @@ class App extends React.Component {
   }
 
   componentWillUnmount() {
-    window.removeEventListener("resize", this.updataDimensions.bind(this));
+    window.removeEventListener("resize", this.updateDimensions.bind(this));
   }
 
   render() {

@@ -55,5 +55,8 @@
     margin-top: 2.5%;
     margin-right: auto;
     margin-left: auto;
+    clear: both;
+    width: 50%;
+    height: 30px;
   }
 }

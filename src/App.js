@@ -1,7 +1,7 @@
 import React from "react";
 import { Graph } from "react-d3-graph";
 import NumericInput from "react-numeric-input";
-import { graphConfig } from "./configs.js";
+import { baseGraphConfig } from "./configs.js";
 
 import "./App.css";
 
@@ -16,14 +16,14 @@ class App extends React.Component {
     super(props);
     this.state = {
       n: START_VAL,
-      k: parseInt((START_VAL * (START_VAL - 1)) / 24),
+      k: parseInt((START_VAL * (START_VAL - 1)) / 20),
       maxEdges: parseInt((START_VAL * (START_VAL - 1)) / 2),
       data: {
         nodes: [],
         links: []
       },
       nodeConnections: [],
-      loading: false
+      graphConfig: baseGraphConfig
     };
   }
 
@@ -42,7 +42,7 @@ class App extends React.Component {
     this.setState({ k: newNum });
   };
 
-  generateGraph = event => {
+  generateGraph = () => {
     // Storing local copies
     let n = this.state.n;
     let k = this.state.k;
@@ -156,8 +156,22 @@ class App extends React.Component {
     this.setState({ data, nodeConnections });
   };
 
+  // Calculate and update size of svg dimensions
+  updateDimensions() {
+    let currentConfig = this.state.graphConfig;
+    currentConfig.width = parseInt(window.innerWidth * 0.95);
+    currentConfig.height = parseInt(window.innerHeight * 0.66);
+    this.setState({ graphConfig: currentConfig });
+  }
+
   componentWillMount() {
-    this.generateGraph(0);
+    this.generateGraph();
+    this.updateDimensions();
+    window.addEventListener("resize", this.updateDimensions.bind(this));
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updataDimensions.bind(this));
   }
 
   render() {
@@ -181,7 +195,7 @@ class App extends React.Component {
             <Graph
               id="graph-id"
               data={this.state.data}
-              config={graphConfig}
+              config={this.state.graphConfig}
               onClickNode={this.addEdge}
             />
           </div>

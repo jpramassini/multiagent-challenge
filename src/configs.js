@@ -1,4 +1,4 @@
-export const graphConfig = {
+export const baseGraphConfig = {
   automaticRearrangeAfterDropNode: false,
   collapsible: false,
   directed: false,

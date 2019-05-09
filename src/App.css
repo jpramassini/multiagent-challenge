@@ -44,3 +44,16 @@
   margin-left: 2em;
   font-weight: 700;
 }
+
+@media screen and (max-device-width: 480px) {
+  .input-label {
+    float: left;
+    clear: left;
+    margin-left: 2em;
+  }
+  .generate-button {
+    margin-top: 2.5%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}

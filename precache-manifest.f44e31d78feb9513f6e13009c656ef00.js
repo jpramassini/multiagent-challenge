@@ -1,18 +1,18 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e010166ec7fbbca9c857ac48213ba00f",
+    "revision": "9f1bddfb2cfc3b7b07df42fd7f552ef1",
     "url": "/multiagent-challenge/index.html"
   },
   {
-    "revision": "998ad4b96987dc03d52b",
-    "url": "/multiagent-challenge/static/css/main.551e8004.chunk.css"
+    "revision": "e7771c9b0d08815ecd29",
+    "url": "/multiagent-challenge/static/css/main.59a7d07b.chunk.css"
   },
   {
     "revision": "ea2e8a51828f228ab38b",
     "url": "/multiagent-challenge/static/js/2.f82c858c.chunk.js"
   },
   {
-    "revision": "998ad4b96987dc03d52b",
+    "revision": "e7771c9b0d08815ecd29",
     "url": "/multiagent-challenge/static/js/main.2a751be3.chunk.js"
   },
   {

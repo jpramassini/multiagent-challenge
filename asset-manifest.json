@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/multiagent-challenge/static/css/main.551e8004.chunk.css",
+    "main.css": "/multiagent-challenge/static/css/main.59a7d07b.chunk.css",
     "main.js": "/multiagent-challenge/static/js/main.2a751be3.chunk.js",
     "main.js.map": "/multiagent-challenge/static/js/main.2a751be3.chunk.js.map",
     "runtime~main.js": "/multiagent-challenge/static/js/runtime~main.bd87e27a.js",
@@ -8,8 +8,8 @@
     "static/js/2.f82c858c.chunk.js": "/multiagent-challenge/static/js/2.f82c858c.chunk.js",
     "static/js/2.f82c858c.chunk.js.map": "/multiagent-challenge/static/js/2.f82c858c.chunk.js.map",
     "index.html": "/multiagent-challenge/index.html",
-    "precache-manifest.2b377374e5f99152f1700f243eb97118.js": "/multiagent-challenge/precache-manifest.2b377374e5f99152f1700f243eb97118.js",
+    "precache-manifest.f44e31d78feb9513f6e13009c656ef00.js": "/multiagent-challenge/precache-manifest.f44e31d78feb9513f6e13009c656ef00.js",
     "service-worker.js": "/multiagent-challenge/service-worker.js",
-    "static/css/main.551e8004.chunk.css.map": "/multiagent-challenge/static/css/main.551e8004.chunk.css.map"
+    "static/css/main.59a7d07b.chunk.css.map": "/multiagent-challenge/static/css/main.59a7d07b.chunk.css.map"
   }
 }

@@ -4,7 +4,6 @@ import NumericInput from "react-numeric-input";
 import { graphConfig } from "./configs.js";
 
 import "./App.css";
-import { thisExpression, thisTypeAnnotation } from "@babel/types";
 
 const START_VAL = 36;
 

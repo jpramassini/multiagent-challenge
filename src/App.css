@@ -4,7 +4,7 @@
 
 .App-header {
   background-color: #e87f18;
-  min-height: 15vh;
+  height: 15vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -37,4 +37,10 @@
 
 .numeric-input {
   font-family: "Roboto", sans-serif;
+}
+
+.input-label {
+  margin-right: 0.5em;
+  margin-left: 2em;
+  font-weight: 700;
 }

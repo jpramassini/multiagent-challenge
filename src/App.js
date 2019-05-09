@@ -167,7 +167,10 @@ class App extends React.Component {
       return (
         <div className="App">
           <div className="App-header">
-            <h2>Multiagent Systems Challenge</h2>
+            <h3 style={{ marginBottom: 0 }}>Multiagent Systems Challenge</h3>
+            <h5 style={{ marginBottom: "2em", marginTop: ".75em" }}>
+              JP Ramassini
+            </h5>
           </div>
           <div
             style={{
@@ -184,6 +187,7 @@ class App extends React.Component {
             />
           </div>
           <div>
+            <label className={"input-label"}>N</label>
             <NumericInput
               min={2}
               max={100}
@@ -191,6 +195,7 @@ class App extends React.Component {
               onChange={this.setNodesCount}
               className={"numeric-input"}
             />
+            <label className={"input-label"}>K</label>
             <NumericInput
               min={1}
               max={this.state.maxEdges}

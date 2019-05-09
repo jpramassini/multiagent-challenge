@@ -4,8 +4,8 @@ export const graphConfig = {
   directed: false,
   focusAnimationDuration: 0.75,
   focusZoom: 1,
-  height: 400,
-  highlightDegree: 1,
+  height: 500,
+  highlightDegree: 2,
   highlightOpacity: 0.2,
   linkHighlightBehavior: true,
   maxZoom: 4,
@@ -13,11 +13,11 @@ export const graphConfig = {
   nodeHighlightBehavior: true,
   panAndZoom: true,
   staticGraph: false,
-  width: 800,
+  width: 900,
   d3: {
-    alphaTarget: 0.05,
-    gravity: -650,
-    linkLength: 200,
+    alphaTarget: 0.06,
+    gravity: -700,
+    linkLength: 300,
     linkStrength: 1
   },
   node: {

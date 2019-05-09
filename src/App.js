@@ -4,6 +4,9 @@ import NumericInput from "react-numeric-input";
 import { graphConfig } from "./configs.js";
 
 import "./App.css";
+import { thisExpression, thisTypeAnnotation } from "@babel/types";
+
+const START_VAL = 9;
 
 function randomIntInRange(min, max) {
   return parseInt(Math.random() * (max - min + 1) + min);
@@ -13,16 +16,15 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      n: 7,
-      k: parseInt((7 * (7 - 1)) / 4),
-      maxEdges: (7 * (7 - 1)) / 2,
+      n: START_VAL,
+      k: parseInt((START_VAL * (START_VAL - 1)) / 5),
+      maxEdges: (START_VAL * (START_VAL - 1)) / 2,
       data: {
         nodes: [],
         links: []
       },
-      nodeConnections: {}
+      nodeConnections: []
     };
-    //this.setNodesCount = this.setNodesCount.bind(this);
   }
 
   setNodesCount = newNum => {
@@ -74,17 +76,82 @@ class App extends React.Component {
         nodeConnections[source].indexOf(target) > -1
       ); // To ensure no self-connections or double connections
 
-      console.log("Target: " + target);
-      nodeConnections[source].push(target);
-      nodeConnections[target].push(source);
+      nodeConnections[source].push(parseInt(target));
+      nodeConnections[target].push(parseInt(source));
       links.push({ source: source, target: target });
     }
-    console.log(links);
     let data = {
       nodes,
       links
     };
 
+    this.setState({ data, nodeConnections });
+  };
+
+  checkForCycle = (source, target) => {
+    console.log("In check for cycle: " + source);
+    console.log("Target is " + target);
+    let queue = [];
+    let visited = {};
+    visited[source] = true;
+    queue.push(source);
+
+    while (queue.length !== 0) {
+      let next = queue.shift();
+      visited[next] = true;
+      for (let node of this.state.nodeConnections[next]) {
+        console.log("Checking node " + next);
+        if (!visited[node]) {
+          if (node === target) {
+            console.log(`${source} to ${target} would make a cycle.`);
+            return true;
+          } else {
+            queue.push(node);
+          }
+        }
+      }
+    }
+    return false;
+  };
+
+  addEdge = source => {
+    if (this.state.nodeConnections[source].length === this.state.n - 1) {
+      alert("No more edges can be connected.");
+      return;
+    }
+
+    let target;
+    let checked = [];
+    for (let i = 0; i < this.state.n; i++) {
+      checked[i] = false;
+    }
+    checked[source] = true;
+
+    do {
+      if (
+        checked.every(item => {
+          return item === true;
+        })
+      ) {
+        alert(
+          "Unable to make another edge, doing so would create a new cycle."
+        );
+        return;
+      }
+      target = randomIntInRange(0, this.state.n - 1);
+      checked[target] = true;
+      console.log("ADD EDGE TARGET " + target);
+    } while (
+      target === parseInt(source) ||
+      this.state.nodeConnections[target].length === this.state.n - 1 ||
+      this.state.nodeConnections[source].indexOf(target) > -1 ||
+      this.checkForCycle(source, target)
+    );
+    let data = this.state.data;
+    let nodeConnections = this.state.nodeConnections;
+    nodeConnections[source].push(target);
+    nodeConnections[target].push(source);
+    data.links.push({ source: parseInt(source), target: target });
     this.setState({ data, nodeConnections });
   };
 
@@ -97,7 +164,12 @@ class App extends React.Component {
     if (this.state.data.nodes.length > 0) {
       return (
         <div className="App">
-          <Graph id="graph-id" data={this.state.data} config={graphConfig} />
+          <Graph
+            id="graph-id"
+            data={this.state.data}
+            config={graphConfig}
+            onClickNode={this.addEdge}
+          />
           <div>
             <NumericInput
               min={2}

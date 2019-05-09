@@ -28,17 +28,17 @@ class App extends React.Component {
   }
 
   setNodesCount = newNum => {
-    console.log(newNum);
+    //console.log(newNum);
     let maxEdges = (newNum * (newNum - 1)) / 2;
     this.setState({ n: newNum, maxEdges });
     if (this.state.k > maxEdges) {
-      console.log("New k: " + maxEdges);
+      //console.log("New k: " + maxEdges);
       this.setState({ k: maxEdges });
     }
   };
 
   setEdgeCount = newNum => {
-    console.log("New K: " + newNum);
+    //console.log("New K: " + newNum);
     this.setState({ k: newNum });
   };
 
@@ -66,7 +66,7 @@ class App extends React.Component {
       do {
         source = randomIntInRange(0, n - 1);
       } while (nodeConnections[source].length === n - 1);
-      console.log("Source: " + source);
+      //console.log("Source: " + source);
       let target;
       do {
         // Loops until valid target is found.
@@ -91,8 +91,8 @@ class App extends React.Component {
 
   checkForCycle = (source, target) => {
     this.setState({ loading: true });
-    console.log("In check for cycle: " + source);
-    console.log("Target is " + target);
+    //console.log("In check for cycle: " + source);
+    //console.log("Target is " + target);
     let queue = [];
     let visited = {};
     visited[source] = true;
@@ -102,10 +102,10 @@ class App extends React.Component {
       let next = queue.shift();
       visited[next] = true;
       for (let node of this.state.nodeConnections[next]) {
-        console.log("Checking node " + next);
+        //console.log("Checking node " + next);
         if (!visited[node]) {
           if (node === target) {
-            console.log(`${source} to ${target} would make a cycle.`);
+            //console.log(`${source} to ${target} would make a cycle.`);
             return true;
           } else {
             queue.push(node);
@@ -161,7 +161,7 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state);
+    //console.log(this.state);
     if (this.state.data.nodes.length > 0) {
       return (
         <div className="App">
@@ -211,13 +211,15 @@ class App extends React.Component {
     } else {
       return (
         <div>
+          <label className={"input-label"}>N</label>
           <NumericInput
             min={2}
-            max={150}
+            max={100}
             value={this.state.n}
             onChange={this.setNodesCount}
             className={"numeric-input"}
           />
+          <label className={"input-label"}>K</label>
           <NumericInput
             min={1}
             max={this.state.maxEdges}

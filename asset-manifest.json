@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/multiagent-challenge/static/css/main.0df74ab7.chunk.css",
-    "main.js": "/multiagent-challenge/static/js/main.b08a8181.chunk.js",
-    "main.js.map": "/multiagent-challenge/static/js/main.b08a8181.chunk.js.map",
+    "main.js": "/multiagent-challenge/static/js/main.1c3983ea.chunk.js",
+    "main.js.map": "/multiagent-challenge/static/js/main.1c3983ea.chunk.js.map",
     "runtime~main.js": "/multiagent-challenge/static/js/runtime~main.bd87e27a.js",
     "runtime~main.js.map": "/multiagent-challenge/static/js/runtime~main.bd87e27a.js.map",
     "static/js/2.f82c858c.chunk.js": "/multiagent-challenge/static/js/2.f82c858c.chunk.js",
     "static/js/2.f82c858c.chunk.js.map": "/multiagent-challenge/static/js/2.f82c858c.chunk.js.map",
     "index.html": "/multiagent-challenge/index.html",
-    "precache-manifest.f8c0ee3d42c6e6beff39d2910b4252e1.js": "/multiagent-challenge/precache-manifest.f8c0ee3d42c6e6beff39d2910b4252e1.js",
+    "precache-manifest.8d52a796fe2287732cea137580f7c80a.js": "/multiagent-challenge/precache-manifest.8d52a796fe2287732cea137580f7c80a.js",
     "service-worker.js": "/multiagent-challenge/service-worker.js",
     "static/css/main.0df74ab7.chunk.css.map": "/multiagent-challenge/static/css/main.0df74ab7.chunk.css.map"
   }

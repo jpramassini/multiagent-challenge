@@ -6,7 +6,7 @@ import { graphConfig } from "./configs.js";
 import "./App.css";
 import { thisExpression, thisTypeAnnotation } from "@babel/types";
 
-const START_VAL = 9;
+const START_VAL = 36;
 
 function randomIntInRange(min, max) {
   return parseInt(Math.random() * (max - min + 1) + min);
@@ -17,13 +17,14 @@ class App extends React.Component {
     super(props);
     this.state = {
       n: START_VAL,
-      k: parseInt((START_VAL * (START_VAL - 1)) / 5),
-      maxEdges: (START_VAL * (START_VAL - 1)) / 2,
+      k: parseInt((START_VAL * (START_VAL - 1)) / 24),
+      maxEdges: parseInt((START_VAL * (START_VAL - 1)) / 2),
       data: {
         nodes: [],
         links: []
       },
-      nodeConnections: []
+      nodeConnections: [],
+      loading: false
     };
   }
 
@@ -60,7 +61,7 @@ class App extends React.Component {
       nodeConnections[i] = [];
     }
 
-    // Generate connections...
+    // Generate edges...
     for (let i = 0; i < k; i++) {
       let source;
       do {
@@ -69,6 +70,7 @@ class App extends React.Component {
       console.log("Source: " + source);
       let target;
       do {
+        // Loops until valid target is found.
         target = randomIntInRange(0, n - 1);
       } while (
         target === source ||
@@ -89,6 +91,7 @@ class App extends React.Component {
   };
 
   checkForCycle = (source, target) => {
+    this.setState({ loading: true });
     console.log("In check for cycle: " + source);
     console.log("Target is " + target);
     let queue = [];
@@ -140,7 +143,6 @@ class App extends React.Component {
       }
       target = randomIntInRange(0, this.state.n - 1);
       checked[target] = true;
-      console.log("ADD EDGE TARGET " + target);
     } while (
       target === parseInt(source) ||
       this.state.nodeConnections[target].length === this.state.n - 1 ||
@@ -164,28 +166,41 @@ class App extends React.Component {
     if (this.state.data.nodes.length > 0) {
       return (
         <div className="App">
-          <Graph
-            id="graph-id"
-            data={this.state.data}
-            config={graphConfig}
-            onClickNode={this.addEdge}
-          />
+          <div className="App-header">
+            <h2>Multiagent Systems Challenge</h2>
+          </div>
+          <div
+            style={{
+              borderRadius: 10,
+              boxShadow:
+                "0 4px 8px 0 rgba(0,0,0,0.12), 0 2px 4px 0 rgba(0,0,0,0.08)",
+              margin: "2.5%"
+            }}>
+            <Graph
+              id="graph-id"
+              data={this.state.data}
+              config={graphConfig}
+              onClickNode={this.addEdge}
+            />
+          </div>
           <div>
             <NumericInput
               min={2}
               max={100}
               value={this.state.n}
-              strict
               onChange={this.setNodesCount}
+              className={"numeric-input"}
             />
             <NumericInput
               min={1}
               max={this.state.maxEdges}
               value={this.state.k}
-              strict
               onChange={this.setEdgeCount}
+              className={"numeric-input"}
             />
-            <button onClick={this.generateGraph}>Generate Graph</button>
+            <button className={"generate-button"} onClick={this.generateGraph}>
+              Generate Graph
+            </button>
           </div>
         </div>
       );
@@ -194,19 +209,21 @@ class App extends React.Component {
         <div>
           <NumericInput
             min={2}
-            max={100}
+            max={150}
             value={this.state.n}
-            strict
             onChange={this.setNodesCount}
+            className={"numeric-input"}
           />
           <NumericInput
             min={1}
             max={this.state.maxEdges}
             value={this.state.k}
-            strict
             onChange={this.setEdgeCount}
+            className={"numeric-input"}
           />
-          <button onClick={this.generateGraph}>Generate Graph</button>
+          <button className={"generate-button"} onClick={this.generateGraph}>
+            Generate Graph
+          </button>
         </div>
       );
     }
